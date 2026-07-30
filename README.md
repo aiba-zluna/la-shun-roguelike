@@ -17,4 +17,4 @@ Embark on a perilous rescue mission as La Shun, a determined warrior venturing i
  - RNG enemy spawn system
 
 # Created by 
-Ivan de Luna and Marclin Realizan
+Aiba and Duskarr
