@@ -16,4 +16,5 @@ Embark on a perilous rescue mission as La Shun, a determined warrior venturing i
  - Debuff system
  - RNG enemy spawn system
 
-# Created by Ivan de Luna and Marclin Realizan
+# Created by 
+Ivan de Luna and Marclin Realizan
