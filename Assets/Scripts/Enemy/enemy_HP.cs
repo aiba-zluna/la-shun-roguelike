@@ -1,26 +1,21 @@
 using UnityEngine;
 
-public class player_HP : MonoBehaviour
+public class enemy_HP : MonoBehaviour
 {
 
-    private PlayerStats stats;
-    private hp_Bar hpBar;
+    private EnemyStats stats;
+    private bool isDead = false;
 
     void Awake()
     {
-        stats = GetComponent<PlayerStats>();
-        stats.currentHealth = stats.maxHealth;
-
-        hpBar = GetComponentInChildren<hp_Bar>();
+        stats = GetComponent<EnemyStats>();
     }
 
 
     public void TakeDamage(float damage)
     {
-        
         stats.currentHealth -= damage;
         stats.currentHealth = Mathf.Max(stats.currentHealth, 0);
-        hpBar.UpdateHealth(stats.currentHealth, stats.maxHealth); //update hp bar sprite
 
         if(stats.currentHealth <= 0)
         {
@@ -38,6 +33,13 @@ public class player_HP : MonoBehaviour
     //temporary death
     void Die()
     {
-        Destroy(gameObject);
+        if (isDead)
+        return;
+
+        isDead = true;
+
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<Rigidbody2D>().simulated = false;
+        GetComponent<SpriteRenderer>().enabled = false;
     }
 }

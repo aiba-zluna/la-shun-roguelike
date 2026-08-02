@@ -12,11 +12,11 @@ public class hp_Bar : MonoBehaviour
 
         fillImage.fillAmount = percent;
 
-        if (percent > 0.75f)
+        if (percent > 0.66f)
         {
             fillImage.color = Color.green;
         }
-        else if (percent > 0.35f)
+        else if (percent > 0.33f)
         {
             fillImage.color = Color.yellow;
         }

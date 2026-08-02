@@ -2,7 +2,12 @@ using UnityEngine;
 
 public class EnemyDamage : MonoBehaviour
 {
-    [SerializeField] private float damage = 10f;
+    private EnemyStats stats;
+
+    private void Awake()
+    {
+        stats = GetComponent<EnemyStats>();
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -10,7 +15,7 @@ public class EnemyDamage : MonoBehaviour
 
         if (player != null)
         {
-            player.TakeDamage(damage);
+            player.TakeDamage(stats.damage);
         }
     }
 }
