@@ -1,11 +1,22 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class PlayerMovement : MonoBehaviour
 {
+
+    private Rigidbody2D rb;
+    private Vector2 movement;
+    private PlayerStats stats;
+    
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    public float speed = 5f;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        stats = GetComponent<PlayerStats>();
+    }
 
     void Update()
     {
@@ -15,9 +26,7 @@ public class PlayerMovement : MonoBehaviour
         if (Keyboard.current.sKey.isPressed) input.y -= 1;
         if (Keyboard.current.aKey.isPressed) input.x -= 1;
         if (Keyboard.current.dKey.isPressed) input.x += 1;
-
-        transform.position += (Vector3)input.normalized * speed * Time.deltaTime;
-
+            
         if (input != Vector2.zero)
         {
             animator.SetBool("isRunning", true);
@@ -35,5 +44,10 @@ public class PlayerMovement : MonoBehaviour
         {
             spriteRenderer.flipX = true;
         }
+    }
+
+    void FixedUpdate()
+    {
+        rb.linearVelocity = input.normalized * stats.moveSpeed;
     }
 }
