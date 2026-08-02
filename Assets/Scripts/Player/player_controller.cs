@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     private Rigidbody2D rb;
-    private Vector2 movement;
+    private Vector2 input;
     private PlayerStats stats;
     
     [SerializeField] private Animator animator;
@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Vector2 input = Vector2.zero;
+        input = Vector2.zero;
 
         if (Keyboard.current.wKey.isPressed) input.y += 1;
         if (Keyboard.current.sKey.isPressed) input.y -= 1;

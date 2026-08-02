@@ -1251,6 +1251,7 @@ GameObject:
   - component: {fileID: 2002091191}
   - component: {fileID: 2002091192}
   - component: {fileID: 2002091193}
+  - component: {fileID: 2002091194}
   m_Layer: 7
   m_Name: main_character
   m_TagString: Untagged
@@ -1332,7 +1333,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
 --- !u!61 &2002091189
@@ -1438,6 +1439,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e642d3d94e4c5ae488e34ae778bd0602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  animator: {fileID: 2002091194}
+  spriteRenderer: {fileID: 2002091187}
 --- !u!114 &2002091193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1450,6 +1453,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9dcb66a0f269a942a56f2a2abf065d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!95 &2002091194
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002091185}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b744ab35e23ecd443a9c6087c0dd9e16, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
