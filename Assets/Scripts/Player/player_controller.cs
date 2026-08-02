@@ -8,6 +8,9 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movement;
     private PlayerStats stats;
+    
+    [SerializeField] private Animator animator;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     void Start()
     {
@@ -17,23 +20,34 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        movement = Vector2.zero;
+        Vector2 input = Vector2.zero;
 
-        if (Keyboard.current.wKey.isPressed)
-            movement.y = 1;
+        if (Keyboard.current.wKey.isPressed) input.y += 1;
+        if (Keyboard.current.sKey.isPressed) input.y -= 1;
+        if (Keyboard.current.aKey.isPressed) input.x -= 1;
+        if (Keyboard.current.dKey.isPressed) input.x += 1;
+            
+        if (input != Vector2.zero)
+        {
+            animator.SetBool("isRunning", true);
+        }
+        else
+        {
+            animator.SetBool("isRunning", false);
+        }
 
-        if (Keyboard.current.sKey.isPressed)
-            movement.y = -1;
-
-        if (Keyboard.current.aKey.isPressed)
-            movement.x = -1;
-
-        if (Keyboard.current.dKey.isPressed)
-            movement.x = 1;
+        if (input.x > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if (input.x < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
     }
 
     void FixedUpdate()
     {
-        rb.linearVelocity = movement.normalized * stats.moveSpeed;
+        rb.linearVelocity = input.normalized * stats.moveSpeed;
     }
 }

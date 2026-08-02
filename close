@@ -1,0 +1,166 @@
+[33mcommit 7a9026345cc21e364af4a6ef272fd1a68aad65ad[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: aiba-zluna <imdeluna.work@gmail.com>
+Date:   Wed Jul 29 21:59:27 2026 +0800
+
+    sample level open instructions
+
+[33mcommit defeb5ad5d50826b9df255ad15d092e18f312252[m
+Author: aiba-zluna <imdeluna.work@gmail.com>
+Date:   Wed Jul 29 21:31:40 2026 +0800
+
+    Added player movement, character and enemy sprite selections and collisions
+
+[33mcommit 101691ab04533b125b75baf31399930700c8000d[m
+Author: duskarr <realizanhh15@gmail.com>
+Date:   Tue Jul 28 13:42:09 2026 +0800
+
+    folder organaze and starting scene/temporary sprite
+
+[33mcommit 3a1e89dc881df920c0a24496c39eaa673ce47db8[m
+Author: aiba-zluna <imdeluna.work@gmail.com>
+Date:   Sat Jul 25 21:27:24 2026 +0800
+
+    enemy mob chase and ai pathing
+
+[33mcommit 94258c89474857d23ffd0804c10a092b766db43e[m
+Author: aiba-zluna <imdeluna.work@gmail.com>
+Date:   Sat Jul 25 18:27:57 2026 +0800
+
+    clean up
+
+[33mcommit baa04f09c163b56c77883af4d3e6487d6353784c[m
+Author: aiba-zluna <imdeluna.work@gmail.com>
+Date:   Sat Jul 25 18:26:33 2026 +0800
+
+    clean up
+
+[33mcommit 6ab198b0fcfb419a3cbf841e058fde4a0b7c5998[m
+Author: aiba-zluna <imdeluna.work@gmail.com>
+Date:   Sat Jul 25 18:23:19 2026 +0800
+
+    clean up
+
+[33mcommit 187695481e4468730e4f4b4543a4aa9bd202037f[m
+Merge: 8b57862 0893bb1
+Author: aiba-zluna <imdeluna.work@gmail.com>
+Date:   Sat Jul 25 18:22:24 2026 +0800
+
+    Merge remote-tracking branch 'refs/remotes/origin/main'
+
+[33mcommit 8b57862b3740037c93491aa52f4b3882edb55f16[m
+Author: aiba-zluna <imdeluna.work@gmail.com>
+Date:   Sat Jul 25 18:21:23 2026 +0800
+
+    kimmy
+
+[33mcommit 0893bb1b359d4a204da09bb8e04b59f9724d7f2f[m
+Author: duskarr <realizanhh15@gmail.com>
+Date:   Sat Jul 25 18:20:21 2026 +0800
+
+    pogi #5
+
+[33mcommit f1417903ebbf77273a94110ee44ccf08d9d61476[m
+Merge: 4315e05 2fa77cb
+Author: aiba-zluna <imdeluna.work@gmail.com>
+Date:   Sat Jul 25 18:14:56 2026 +0800
+
+    Merge remote-tracking branch 'refs/remotes/origin/main'
+
+[33mcommit 4315e05e4ddf3e1cfbf1a22fa5efac80e8dc3cff[m
+Author: aiba-zluna <imdeluna.work@gmail.com>
+Date:   Sat Jul 25 18:14:26 2026 +0800
+
+    sabunutan
+
+[33mcommit 2fa77cbcd04575da7c5e71a99c2b357801ce0fe6[m
+Author: duskarr <realizanhh15@gmail.com>
+Date:   Sat Jul 25 18:12:14 2026 +0800
+
+    git co
+
+[33mcommit d71b7688760855a079f2a315a5aec08336c0131f[m
+Merge: 5ce3084 115dab5
+Author: duskarr <realizanhh15@gmail.com>
+Date:   Sat Jul 25 18:05:57 2026 +0800
+
+    Merge branch 'main' of https://github.com/aiba-zluna/la-shun-roguelike
+
+[33mcommit 5ce3084a01909d6d6eb5573571454533297fe108[m
+Author: duskarr <realizanhh15@gmail.com>
+Date:   Sat Jul 25 17:55:52 2026 +0800
+
+    pogi #3
+
+[33mcommit 115dab595d7305f3c7db7a9c34d1dc0b8cf0154d[m
+Merge: b147b2b 59c6ff5
+Author: aiba-zluna <imdeluna.work@gmail.com>
+Date:   Sat Jul 25 17:51:02 2026 +0800
+
+    Merge remote-tracking branch 'refs/remotes/origin/main'
+
+[33mcommit 59c6ff5bd7fb32c79c67db6a6b748ce38db028ff[m
+Author: duskarr <realizanhh15@gmail.com>
+Date:   Sat Jul 25 17:48:39 2026 +0800
+
+    pogi #2
+
+[33mcommit b147b2b76c46489992feec59425959fe1f56f70e[m
+Author: aiba-zluna <imdeluna.work@gmail.com>
+Date:   Sat Jul 25 17:48:35 2026 +0800
+
+    coach sara
+
+[33mcommit 5ab21e181688acf73f3b2dfc37ca436006ad359d[m
+Merge: 10d4231 5d1d526
+Author: aiba-zluna <imdeluna.work@gmail.com>
+Date:   Sat Jul 25 17:44:33 2026 +0800
+
+    Merge remote-tracking branch 'refs/remotes/origin/main'
+
+[33mcommit 10d42316350df06430f303cadd4f79b3260f5bbe[m
+Author: aiba-zluna <imdeluna.work@gmail.com>
+Date:   Sat Jul 25 17:43:33 2026 +0800
+
+    test
+
+[33mcommit 4877349781c5978032b8ade80fc28d9bdd243f49[m
+Author: aiba-zluna <imdeluna.work@gmail.com>
+Date:   Sat Jul 25 17:38:23 2026 +0800
+
+    test
+
+[33mcommit 5d1d52662b952ef18dbf9a9ef92179d4a1094e6e[m
+Author: duskarr <realizanhh15@gmail.com>
+Date:   Sat Jul 25 17:37:18 2026 +0800
+
+    pogi
+
+[33mcommit b54e53051bb23ffa0f5c767f70afff60955bdeb7[m
+Author: aiba-zluna <imdeluna.work@gmail.com>
+Date:   Sat Jul 25 17:33:59 2026 +0800
+
+    hehe
+
+[33mcommit 556f9bee13abb9e307b3ebf8661a93b194bfc87a[m
+Author: duskarr <realizanhh15@gmail.com>
+Date:   Sat Jul 25 17:33:01 2026 +0800
+
+    test
+
+[33mcommit e6339b6f4516d36bd67abe1ed23b31a84e4ee929[m[33m ([m[1;31morigin/to-be-added[m[33m)[m
+Author: aiba-zluna <imdeluna.work@gmail.com>
+Date:   Sat Jul 25 17:19:20 2026 +0800
+
+    Add the actual category folders
+
+[33mcommit a01e9bacd9914332c6633e187009abb071cc2f08[m
+Author: aiba-zluna <imdeluna.work@gmail.com>
+Date:   Sat Jul 25 17:06:20 2026 +0800
+
+    Add category folders
+
+[33mcommit 99d84fa16356c11bc8ee947c71d4fae8f94d477d[m
+Author: Ivan de Luna <imdeluna.work@gmail.com>
+Date:   Sat Jul 25 16:55:52 2026 +0800
+
+    Initial check-in
