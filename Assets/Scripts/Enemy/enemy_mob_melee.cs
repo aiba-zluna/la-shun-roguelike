@@ -1,21 +1,27 @@
 using UnityEngine;
 
-public class EnemyDamage : MonoBehaviour
+public class EnemyMobMelee : MonoBehaviour
 {
-    private EnemyStats stats;
+    private EnemyStats enemyStats;
+    private float nextAttackTime;
 
-    private void Awake()
+    void Awake()
     {
-        stats = GetComponent<EnemyStats>();
+        enemyStats = GetComponent<EnemyStats>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void Attack(Transform player)
     {
-        player_HP player = collision.gameObject.GetComponent<player_HP>();
+        if (Time.time < nextAttackTime)
+            return;
 
-        if (player != null)
+        nextAttackTime = Time.time + enemyStats.attackCooldown;
+
+        player_HP playerHP = player.GetComponent<player_HP>();
+
+        if (playerHP != null)
         {
-            player.TakeDamage(stats.damage);
+            playerHP.TakeDamage(enemyStats.damage);
         }
     }
 }

@@ -190,8 +190,8 @@ MonoBehaviour:
   roamRadius: 20
   roamDelay: 2
   damage: 5
-  attackRange: 0
-  attackCooldown: 0
+  attackRange: 1
+  attackCooldown: 1
   keyDrop: 0
   buffDrop: 0
 --- !u!114 &8476258991365930886
@@ -399,8 +399,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a02eb167c2b9bd4f9674665a0e99eb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemy_ai
-  roamRadius: 0
-  roamDelay: 0
 --- !u!1 &6829827360305389379
 GameObject:
   m_ObjectHideFlags: 0

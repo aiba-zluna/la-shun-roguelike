@@ -6,37 +6,41 @@ public class EnemyAI : MonoBehaviour
     public enum EnemyState
     {
         Roaming,
-        Chasing
+        Chasing,
+        Attacking
     }
-
-    [Header("Roaming")]
-    [SerializeField] private float roamRadius;
-    [SerializeField] private float roamDelay;
 
     private EnemyState currentState;
 
     private AIPath aiPath;
     private AIDestinationSetter destinationSetter;
 
+    private EnemyStats stats;
+    private EnemyMobMelee mobMelee;
+
+    private Transform player;
+
     private Vector2 spawnPoint;
     private Vector2 roamPoint;
 
+    private float roamRadius;
+    private float roamDelay;
     private float roamTimer;
-
-    private EnemyStats stats;
 
     void Awake()
     {
         aiPath = GetComponent<AIPath>();
         destinationSetter = GetComponent<AIDestinationSetter>();
+
         stats = GetComponent<EnemyStats>();
+        mobMelee = GetComponent<EnemyMobMelee>();
 
         spawnPoint = transform.position;
 
-        currentState = EnemyState.Roaming;
-
         roamRadius = stats.roamRadius;
         roamDelay = stats.roamDelay;
+
+        ChangeState(EnemyState.Roaming);
 
         PickNewRoamPoint();
     }
@@ -61,6 +65,40 @@ public class EnemyAI : MonoBehaviour
                 break;
 
             case EnemyState.Chasing:
+
+                if (player == null)
+                {
+                    PlayerLost();
+                    break;
+                }
+
+                float chaseDistance = Vector2.Distance(transform.position, player.position);
+
+                if (chaseDistance <= stats.attackRange)
+                {
+                    ChangeState(EnemyState.Attacking);
+                }
+
+                break;
+
+            case EnemyState.Attacking:
+
+                if (player == null)
+                {
+                    PlayerLost();
+                    break;
+                }
+
+                float attackDistance = Vector2.Distance(transform.position, player.position);
+
+                if (attackDistance > stats.attackRange)
+                {
+                    ChangeState(EnemyState.Chasing);
+                    break;
+                }
+
+                mobMelee.Attack(player);
+
                 break;
         }
     }
@@ -74,17 +112,43 @@ public class EnemyAI : MonoBehaviour
         aiPath.destination = roamPoint;
     }
 
-    public void PlayerDetected(Transform player)
+    public void PlayerDetected(Transform playerTransform)
     {
-        currentState = EnemyState.Chasing;
+        player = playerTransform;
 
-        destinationSetter.target = player;
+        destinationSetter.target = playerTransform;
+
+        ChangeState(EnemyState.Chasing);
     }
 
     public void PlayerLost()
     {
-        currentState = EnemyState.Roaming;
+        player = null;
+
+        roamTimer = 0f;
+
+        ChangeState(EnemyState.Roaming);
 
         PickNewRoamPoint();
+    }
+
+    private void ChangeState(EnemyState newState)
+    {
+        if (currentState == newState)
+            return;
+
+        currentState = newState;
+
+        switch (currentState)
+        {
+            case EnemyState.Roaming:
+            case EnemyState.Chasing:
+                aiPath.canMove = true;
+                break;
+
+            case EnemyState.Attacking:
+                aiPath.canMove = false;
+                break;
+        }
     }
 }
