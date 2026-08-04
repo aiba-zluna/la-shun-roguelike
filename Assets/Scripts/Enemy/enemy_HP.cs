@@ -38,8 +38,6 @@ public class enemy_HP : MonoBehaviour
 
         isDead = true;
 
-        GetComponent<Collider2D>().enabled = false;
-        GetComponent<Rigidbody2D>().simulated = false;
-        GetComponent<SpriteRenderer>().enabled = false;
+        Destroy(gameObject);
     }
 }

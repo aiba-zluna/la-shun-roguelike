@@ -8,6 +8,7 @@ public class EnemyStats : MonoBehaviour
 
     [Header("Movement")]
     public float moveSpeed;
+    public float aggroRange;
 
     [Header("Combat")]
     public float damage;
