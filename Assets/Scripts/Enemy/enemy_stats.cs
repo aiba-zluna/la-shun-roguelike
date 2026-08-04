@@ -9,6 +9,8 @@ public class EnemyStats : MonoBehaviour
     [Header("Movement")]
     public float moveSpeed;
     public float aggroRange;
+    public float roamRadius;
+     public float roamDelay;
 
     [Header("Combat")]
     public float damage;

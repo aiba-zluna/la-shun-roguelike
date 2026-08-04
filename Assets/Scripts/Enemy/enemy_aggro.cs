@@ -5,6 +5,7 @@ public class EnemyAggro : MonoBehaviour
 {
     private AIPath aiPath;
     private EnemyStats stats;
+    private EnemyAI EnemyAI;
     private AIDestinationSetter destinationSetter;
     private CircleCollider2D circle;
 
@@ -14,8 +15,9 @@ public class EnemyAggro : MonoBehaviour
         destinationSetter = GetComponentInParent<AIDestinationSetter>();
         stats = GetComponentInParent<EnemyStats>();
         circle = GetComponent<CircleCollider2D>();
+        EnemyAI = GetComponentInParent<EnemyAI>();
 
-        aiPath.canMove = false;
+        //aiPath.canMove = false;
         circle.radius = stats.aggroRange;
     }
 
@@ -23,8 +25,7 @@ public class EnemyAggro : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            destinationSetter.target = other.transform;
-            aiPath.canMove = true;
+            EnemyAI.PlayerDetected(other.transform);
         }
     }
 
@@ -32,8 +33,7 @@ public class EnemyAggro : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            destinationSetter.target = null;
-            aiPath.canMove = false;
+            EnemyAI.PlayerLost();
         }
     }
 
