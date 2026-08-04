@@ -26,28 +26,21 @@ public class PlayerMovement : MonoBehaviour
         if (Keyboard.current.sKey.isPressed) input.y -= 1;
         if (Keyboard.current.aKey.isPressed) input.x -= 1;
         if (Keyboard.current.dKey.isPressed) input.x += 1;
-            
+
+        animator.SetBool("isRunning", input != Vector2.zero);
+
         if (input != Vector2.zero)
         {
-            animator.SetBool("isRunning", true);
-        }
-        else
-        {
-            animator.SetBool("isRunning", false);
-        }
-
-        if (input.x > 0)
-        {
-            spriteRenderer.flipX = false;
-        }
-        else if (input.x < 0)
-        {
-            spriteRenderer.flipX = true;
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            spriteRenderer.flipX = mousePos.x < transform.position.x;
         }
     }
+
 
     void FixedUpdate()
     {
         rb.linearVelocity = input.normalized * stats.moveSpeed;
     }
+
+
 }

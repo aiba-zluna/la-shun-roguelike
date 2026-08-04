@@ -12,11 +12,13 @@ public class PlayerShooting : MonoBehaviour
 
     private void Awake()
     {
-        stats = GetComponent<PlayerStats>();
+        stats = GetComponentInParent<PlayerStats>();
     }
 
     private void Update()
     {
+        mouseRotation();
+
         fireTimer += Time.deltaTime;
 
         if (Input.GetMouseButton(0) && fireTimer >= 1f / stats.attackSpeed)
@@ -39,20 +41,11 @@ public class PlayerShooting : MonoBehaviour
 
     void Shoot()
     {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = 0;
-
-        Vector2 direction = (mousePos - firePoint.position).normalized;
-
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-        Quaternion rotation = Quaternion.Euler(0, 0, angle);
-
-
+        Vector2 direction = firePoint.right;
         GameObject bullet = Instantiate(
             bulletPrefab,
             firePoint.position,
-            rotation
+            firePoint.rotation
         );
 
         Bullet bulletScript = bullet.GetComponent<Bullet>();
@@ -63,5 +56,18 @@ public class PlayerShooting : MonoBehaviour
             stats.bulletSpeed,
             stats.bulletLifetime
         );
+    }
+
+    void mouseRotation()
+    {
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = Mathf.Abs(Camera.main.transform.position.z - transform.position.z);
+        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+
+        Vector2 direction = (mousePos - firePoint.position).normalized;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 }
