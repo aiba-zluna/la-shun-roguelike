@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class enemy_HP : MonoBehaviour
+public class EnemyHP : MonoBehaviour
 {
 
     private EnemyStats stats;

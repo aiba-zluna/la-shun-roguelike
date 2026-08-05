@@ -1,27 +1,19 @@
 using UnityEngine;
 
-public class EnemyMobMelee : MonoBehaviour
+public class EnemyMobMelee : EnemyAttack
 {
-    private EnemyStats enemyStats;
-    private float nextAttackTime;
-
-    void Awake()
+    public override void Attack(Transform player)
     {
-        enemyStats = GetComponent<EnemyStats>();
-    }
-
-    public void Attack(Transform player)
-    {
-        if (Time.time < nextAttackTime)
+        if (!CanAttack())
             return;
 
-        nextAttackTime = Time.time + enemyStats.attackCooldown;
+        player_HP hp = player.GetComponent<player_HP>();
 
-        player_HP playerHP = player.GetComponent<player_HP>();
+        if (hp == null)
+            return;
 
-        if (playerHP != null)
-        {
-            playerHP.TakeDamage(enemyStats.damage);
-        }
+        hp.TakeDamage(stats.damage);
+
+        ResetCooldown();
     }
 }

@@ -72,9 +72,7 @@ public class EnemyAI : MonoBehaviour
                     break;
                 }
 
-                float chaseDistance = Vector2.Distance(transform.position, player.position);
-
-                if (chaseDistance <= stats.attackRange)
+                if (InAttackRange())
                 {
                     ChangeState(EnemyState.Attacking);
                 }
@@ -89,9 +87,7 @@ public class EnemyAI : MonoBehaviour
                     break;
                 }
 
-                float attackDistance = Vector2.Distance(transform.position, player.position);
-
-                if (attackDistance > stats.attackRange)
+                if (!InAttackRange())
                 {
                     ChangeState(EnemyState.Chasing);
                     break;
@@ -139,11 +135,16 @@ public class EnemyAI : MonoBehaviour
 
         currentState = newState;
 
-        switch (currentState)
+        switch(currentState)
         {
             case EnemyState.Roaming:
+                aiPath.canMove = true;
+                destinationSetter.target = null;
+                break;
+
             case EnemyState.Chasing:
                 aiPath.canMove = true;
+                destinationSetter.target = player;
                 break;
 
             case EnemyState.Attacking:
@@ -151,4 +152,14 @@ public class EnemyAI : MonoBehaviour
                 break;
         }
     }
+
+
+    private bool InAttackRange()
+{
+    if (player == null)
+        return false;
+
+    return Vector2.Distance(transform.position, player.position)
+            <= stats.attackRange;
+}
 }

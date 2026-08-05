@@ -13,4 +13,9 @@ public class EnemyMovement : MonoBehaviour
 
         aiPath.maxSpeed = stats.moveSpeed;
     }
+
+    public void UpdateMoveSpeed()
+    {
+        aiPath.maxSpeed = stats.moveSpeed;
+    }
 }
