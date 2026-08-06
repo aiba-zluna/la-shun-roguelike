@@ -1,41 +1,46 @@
 using UnityEngine;
-using Pathfinding;
 
+[RequireComponent(typeof(CircleCollider2D))]
 public class EnemyAggro : MonoBehaviour
 {
-    private AIPath aiPath;
-    private EnemyStats stats;
-    private EnemyAI enemyAI;
-    private AIDestinationSetter destinationSetter;
-    private CircleCollider2D circle;
+    private EnemyBehavior behavior;
+    private Transform player;
+    private CircleCollider2D aggroCollider;
 
-    void Start()
+    private void Awake()
     {
-        aiPath = GetComponentInParent<AIPath>();
-        destinationSetter = GetComponentInParent<AIDestinationSetter>();
-        stats = GetComponentInParent<EnemyStats>();
-        circle = GetComponent<CircleCollider2D>();
-        enemyAI = GetComponentInParent<EnemyAI>();
+        behavior = GetComponentInParent<EnemyBehavior>();
 
-        //aiPath.canMove = false;
-        circle.radius = stats.aggroRange;
-    }
+        aggroCollider = GetComponent<CircleCollider2D>();
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
+        EnemyStats stats = GetComponentInParent<EnemyStats>();
+
+        aggroCollider.radius = stats.aggroRange;
+
+        if (behavior == null)
         {
-            enemyAI.PlayerDetected(other.transform);
+            Debug.LogError($"{name}: EnemyBehavior not found in parent.");
         }
     }
 
-    void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            enemyAI.PlayerLost();
-        }
+        if (!other.CompareTag("Player"))
+            return;
+
+        player = other.transform;
+        behavior.OnPlayerEnterAggro(player);
     }
 
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (!other.CompareTag("Player"))
+            return;
 
+        if (player == other.transform)
+        {
+            behavior.OnPlayerExitAggro(player);
+            player = null;
+        }
+    }
 }

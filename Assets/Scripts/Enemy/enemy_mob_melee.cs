@@ -1,19 +1,17 @@
 using UnityEngine;
 
-public class EnemyMobMelee : EnemyAttack
+public class EnemyMobMelee : EnemyBehavior
 {
-    public override void Attack(Transform player)
+    protected override void PerformAttack()
     {
-        if (!CanAttack())
+        if (currentTarget == null)
             return;
 
-        player_HP hp = player.GetComponent<player_HP>();
+        player_HP playerHP = currentTarget.GetComponent<player_HP>();
 
-        if (hp == null)
+        if (playerHP == null)
             return;
 
-        hp.TakeDamage(stats.damage);
-
-        ResetCooldown();
+        playerHP.TakeDamage(stats.damage);
     }
 }

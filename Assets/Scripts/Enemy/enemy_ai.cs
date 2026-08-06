@@ -1,6 +1,8 @@
 using UnityEngine;
 using Pathfinding;
 
+[RequireComponent(typeof(AIPath))]
+[RequireComponent(typeof(AIDestinationSetter))]
 public class EnemyAI : MonoBehaviour
 {
     public enum EnemyState
@@ -14,65 +16,73 @@ public class EnemyAI : MonoBehaviour
 
     private AIPath aiPath;
     private AIDestinationSetter destinationSetter;
+    private EnemyBehavior behavior;
 
-    private EnemyStats stats;
-    private EnemyMobMelee mobMelee;
-
-    private Transform player;
-
-    private Vector2 spawnPoint;
-    private Vector2 roamPoint;
-
+    [Header("Roaming")]
     private float roamRadius;
     private float roamDelay;
-    private float roamTimer;
 
-    void Awake()
+    [Header("Stuck Detection")]
+    [SerializeField] private float stuckTime = 2f;
+
+    private float roamTimer;
+    private float stuckTimer;
+
+    private Transform roamTarget;
+    private Vector2 spawnPosition;
+
+    private void Awake()
     {
         aiPath = GetComponent<AIPath>();
         destinationSetter = GetComponent<AIDestinationSetter>();
+        behavior = GetComponent<EnemyBehavior>();
 
-        stats = GetComponent<EnemyStats>();
-        mobMelee = GetComponent<EnemyMobMelee>();
-
-        spawnPoint = transform.position;
+        EnemyStats stats = GetComponent<EnemyStats>();
 
         roamRadius = stats.roamRadius;
         roamDelay = stats.roamDelay;
 
-        ChangeState(EnemyState.Roaming);
+        GameObject roamTargetObject = new GameObject($"{gameObject.name}_RoamTarget");
+        roamTargetObject.hideFlags = HideFlags.HideAndDontSave;
+        roamTarget = roamTargetObject.transform;
+    }
 
+    private void Start()
+    {
+        spawnPosition = transform.position;
+
+        ChangeState(EnemyState.Roaming);
         PickNewRoamPoint();
     }
 
-    void Update()
+    private void Update()
     {
+        Transform target = behavior.GetTarget();
+
         switch (currentState)
         {
             case EnemyState.Roaming:
 
-                if (!aiPath.pathPending && aiPath.reachedEndOfPath)
-                {
-                    roamTimer += Time.deltaTime;
+                HandleRoaming();
 
-                    if (roamTimer >= roamDelay)
-                    {
-                        PickNewRoamPoint();
-                        roamTimer = 0f;
-                    }
+                if (target != null)
+                {
+                    ChangeState(EnemyState.Chasing);
                 }
 
                 break;
 
             case EnemyState.Chasing:
 
-                if (player == null)
+                if (target == null)
                 {
-                    PlayerLost();
+                    ChangeState(EnemyState.Roaming);
                     break;
                 }
 
-                if (InAttackRange())
+                destinationSetter.target = target;
+
+                if (behavior.InAttackRange())
                 {
                     ChangeState(EnemyState.Attacking);
                 }
@@ -81,85 +91,108 @@ public class EnemyAI : MonoBehaviour
 
             case EnemyState.Attacking:
 
-                if (player == null)
+                if (target == null)
                 {
-                    PlayerLost();
+                    ChangeState(EnemyState.Roaming);
                     break;
                 }
 
-                if (!InAttackRange())
+                destinationSetter.target = target;
+
+                if (!behavior.InAttackRange())
                 {
                     ChangeState(EnemyState.Chasing);
                     break;
                 }
 
-                mobMelee.Attack(player);
+                behavior.Attack();
 
                 break;
         }
-    }
 
-    void PickNewRoamPoint()
-    {
-        Vector2 randomOffset = Random.insideUnitCircle * roamRadius;
-        roamPoint = spawnPoint + randomOffset;
-
-        destinationSetter.target = null;
-        aiPath.destination = roamPoint;
-    }
-
-    public void PlayerDetected(Transform playerTransform)
-    {
-        player = playerTransform;
-
-        destinationSetter.target = playerTransform;
-
-        ChangeState(EnemyState.Chasing);
-    }
-
-    public void PlayerLost()
-    {
-        player = null;
-
-        roamTimer = 0f;
-
-        ChangeState(EnemyState.Roaming);
-
-        PickNewRoamPoint();
+        aiPath.canMove =
+            currentState != EnemyState.Attacking ||
+            !behavior.StopMovementWhileAttacking;
     }
 
     private void ChangeState(EnemyState newState)
     {
-        if (currentState == newState)
-            return;
-
         currentState = newState;
 
-        switch(currentState)
+        switch (currentState)
         {
             case EnemyState.Roaming:
-                aiPath.canMove = true;
-                destinationSetter.target = null;
+
+                destinationSetter.target = roamTarget;
+
+                roamTimer = 0f;
+                stuckTimer = 0f;
+
+                PickNewRoamPoint();
+
                 break;
 
             case EnemyState.Chasing:
-                aiPath.canMove = true;
-                destinationSetter.target = player;
                 break;
 
             case EnemyState.Attacking:
-                aiPath.canMove = false;
                 break;
         }
     }
 
+    private void HandleRoaming()
+    {
+        // Reached destination normally
+        if (!aiPath.pathPending && aiPath.reachedEndOfPath)
+        {
+            roamTimer += Time.deltaTime;
 
-    private bool InAttackRange()
-{
-    if (player == null)
-        return false;
+            if (roamTimer >= roamDelay)
+            {
+                PickNewRoamPoint();
 
-    return Vector2.Distance(transform.position, player.position)
-            <= stats.attackRange;
-}
+                roamTimer = 0f;
+                stuckTimer = 0f;
+            }
+        }
+        else
+        {
+            roamTimer = 0f;
+        }
+
+        // ---------- Stuck Detection ----------
+        if (!aiPath.pathPending &&
+            !aiPath.reachedEndOfPath &&
+            aiPath.desiredVelocity.magnitude > 0.1f &&
+            aiPath.velocity.magnitude < 0.05f)
+        {
+            stuckTimer += Time.deltaTime;
+
+            if (stuckTimer >= stuckTime)
+            {
+                PickNewRoamPoint();
+                stuckTimer = 0f;
+            }
+        }
+        else
+        {
+            stuckTimer = 0f;
+        }
+    }
+
+    private void PickNewRoamPoint()
+    {
+        Vector2 randomOffset = Random.insideUnitCircle * roamRadius;
+        roamTarget.position = spawnPosition + randomOffset;
+
+        destinationSetter.target = roamTarget;
+    }
+
+    private void OnDestroy()
+    {
+        if (roamTarget != null)
+        {
+            Destroy(roamTarget.gameObject);
+        }
+    }
 }

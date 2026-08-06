@@ -18,8 +18,7 @@ public class EnemyStats : MonoBehaviour
     public float damage;
     [Tooltip("Higher Value = Higher Ranger")]
     public float attackRange;
-    [Tooltip("Lower Value = Higher Attack Speed ")]
-    public float attackCooldown;
+    public float attackSpeed;
 
     [Header("Drops")]
     [Tooltip("This shouldn't be changed")]
