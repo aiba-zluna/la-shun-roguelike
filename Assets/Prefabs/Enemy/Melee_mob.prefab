@@ -143,12 +143,12 @@ GameObject:
   - component: {fileID: 3466535400912968267}
   - component: {fileID: 9035792903135875684}
   - component: {fileID: 5960316248217200211}
-  - component: {fileID: 7022863459574462669}
   - component: {fileID: 1199624858925394301}
   - component: {fileID: 559121548863664890}
   - component: {fileID: 6865518868832461706}
+  - component: {fileID: -1205791479361099060}
   m_Layer: 8
-  m_Name: enemy_mob_melee
+  m_Name: Melee_mob
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -191,7 +191,9 @@ MonoBehaviour:
   roamDelay: 2
   damage: 5
   attackRange: 1
-  attackCooldown: 1
+  attackSpeed: 0
+  projectileSpeed: 8
+  projectileLifetime: 5
   keyDrop: 0
   buffDrop: 0
 --- !u!114 &8476258991365930886
@@ -351,18 +353,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &7022863459574462669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6088168979501798575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fa18772bf551a547805ab5eecc34fe6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!114 &1199624858925394301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,6 +389,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a02eb167c2b9bd4f9674665a0e99eb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemy_ai
+  stuckTime: 2
+--- !u!114 &-1205791479361099060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6088168979501798575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa18772bf551a547805ab5eecc34fe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyMobMelee
 --- !u!1 &6829827360305389379
 GameObject:
   m_ObjectHideFlags: 0

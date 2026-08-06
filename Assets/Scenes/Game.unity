@@ -6557,6 +6557,92 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1001 &1664731743
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -587189205603900456, guid: f3ec78d2f864f6c4780965a8c291808d, type: 3}
+      propertyPath: firePoint
+      value: 
+      objectReference: {fileID: 1664731744}
+    - target: {fileID: -587189205603900456, guid: f3ec78d2f864f6c4780965a8c291808d, type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 1125807495107364138, guid: 6d30333b27d8f63449c991ba0855ef30, type: 3}
+    - target: {fileID: 2075250220167334000, guid: f3ec78d2f864f6c4780965a8c291808d, type: 3}
+      propertyPath: moveSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075250220167334000, guid: f3ec78d2f864f6c4780965a8c291808d, type: 3}
+      propertyPath: attackRange
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075250220167334000, guid: f3ec78d2f864f6c4780965a8c291808d, type: 3}
+      propertyPath: attackSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075250220167334000, guid: f3ec78d2f864f6c4780965a8c291808d, type: 3}
+      propertyPath: projectileLifetime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158869939308081776, guid: f3ec78d2f864f6c4780965a8c291808d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.62041664
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158869939308081776, guid: f3ec78d2f864f6c4780965a8c291808d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.0197086
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158869939308081776, guid: f3ec78d2f864f6c4780965a8c291808d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158869939308081776, guid: f3ec78d2f864f6c4780965a8c291808d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158869939308081776, guid: f3ec78d2f864f6c4780965a8c291808d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158869939308081776, guid: f3ec78d2f864f6c4780965a8c291808d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158869939308081776, guid: f3ec78d2f864f6c4780965a8c291808d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158869939308081776, guid: f3ec78d2f864f6c4780965a8c291808d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158869939308081776, guid: f3ec78d2f864f6c4780965a8c291808d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2158869939308081776, guid: f3ec78d2f864f6c4780965a8c291808d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433016441382354898, guid: f3ec78d2f864f6c4780965a8c291808d, type: 3}
+      propertyPath: m_Name
+      value: Range_mob
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f3ec78d2f864f6c4780965a8c291808d, type: 3}
+--- !u!4 &1664731744 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9094843362899451389, guid: f3ec78d2f864f6c4780965a8c291808d, type: 3}
+  m_PrefabInstance: {fileID: 1664731743}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1764808232
 GameObject:
   m_ObjectHideFlags: 0
@@ -24970,3 +25056,4 @@ SceneRoots:
   - {fileID: 1028200125}
   - {fileID: 931398265}
   - {fileID: 1162609612}
+  - {fileID: 1664731743}

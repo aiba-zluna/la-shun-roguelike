@@ -19,6 +19,8 @@ public class EnemyStats : MonoBehaviour
     [Tooltip("Higher Value = Higher Ranger")]
     public float attackRange;
     public float attackSpeed;
+    public float projectileSpeed = 8f;
+    public float projectileLifetime = 5f;
 
     [Header("Drops")]
     [Tooltip("This shouldn't be changed")]
