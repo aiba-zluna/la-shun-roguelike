@@ -62,9 +62,11 @@ MonoBehaviour:
   aggroRange: 10
   roamRadius: 20
   roamDelay: 2
-  damage: 5
-  attackRange: 5
-  attackSpeed: 0
+  damage: 15
+  attackRange: 7
+  attackSpeed: 2
+  projectileSpeed: 8
+  projectileLifetime: 5
   keyDrop: 0
   buffDrop: 0
 --- !u!114 &3612128114757359335
@@ -273,6 +275,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81c62d079bd35274884cfd9a7fb6c5b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemy_mob_ranged
+  projectilePrefab: {fileID: 1125807495107364138, guid: 6d30333b27d8f63449c991ba0855ef30, type: 3}
+  firePoint: {fileID: 9094843362899451389}
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &5747054484094723109
 GameObject:
   m_ObjectHideFlags: 0

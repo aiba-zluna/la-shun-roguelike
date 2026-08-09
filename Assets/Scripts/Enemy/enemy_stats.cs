@@ -15,9 +15,11 @@ public class EnemyStats : MonoBehaviour
     public float roamDelay;
 
     [Header("Combat")]
+    [Tooltip("Healer also use this value for heal amount")]
     public float damage;
-    [Tooltip("Higher Value = Higher Ranger")]
+    [Tooltip("Higher Value = Higher Range")]
     public float attackRange;
+    [Tooltip("Healer also uses this value for heal cast time")]
     public float attackSpeed;
     public float projectileSpeed = 8f;
     public float projectileLifetime = 5f;

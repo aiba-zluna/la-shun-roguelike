@@ -26,9 +26,16 @@ public abstract class EnemyBehavior : MonoBehaviour
         return currentTarget;
     }
 
+    //this is for for normal mob aggro
     protected virtual void SetTarget(Transform target)
     {
         currentTarget = target;
+    }
+
+    //this is for healer targeting, which targets other enemies
+    public virtual void SetExternalTarget(Transform target)
+    {
+        SetTarget(target);
     }
 
     public virtual void OnPlayerEnterAggro(Transform player)

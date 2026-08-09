@@ -191,7 +191,7 @@ MonoBehaviour:
   roamDelay: 2
   damage: 5
   attackRange: 1
-  attackSpeed: 0
+  attackSpeed: 1
   projectileSpeed: 8
   projectileLifetime: 5
   keyDrop: 0
