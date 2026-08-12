@@ -10,8 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c924884d3330b4748965c91745460d21, type: 3}
-  m_Name: MS+
+  m_Name: MS +
   m_EditorClassIdentifier: Assembly-CSharp::BuffData
-  buffName: MS+
-  description: Increase Move Speed by \n5% - 15%
+  buffName: MS +
+  description: Increase Movement Speed by \n {value}
   icon: {fileID: 0}
+  buffType: 0
+  statType: 4
+  valueType: 1
+  displayType: 1
+  minimumValue: 0.05
+  maximumValue: 0.15
+  oneTime: 0
