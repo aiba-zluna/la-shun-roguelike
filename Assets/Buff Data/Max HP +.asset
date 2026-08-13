@@ -10,8 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c924884d3330b4748965c91745460d21, type: 3}
-  m_Name: Bullet Speed+
+  m_Name: Max HP +
   m_EditorClassIdentifier: Assembly-CSharp::BuffData
-  buffName: Bullet Speed+
-  description: 'Increase bullet speed by \n1 - 3 '
+  buffName: Max HP +
+  description: Increases Max HP by \n  {value}
   icon: {fileID: 0}
+  buffType: 0
+  statType: 0
+  minimumValue: 10
+  maximumValue: 30
+  oneTime: 0
