@@ -16,6 +16,14 @@ public class PlayerStats : MonoBehaviour
     public int bulletsPerShot = 2; //no change - 2 bullet burst fire
     public float shotDelay = 0.08f; //no change - the gap between each bullet in burst fire
 
+    [Header("Ultimate")]
+    public float ultimateDamage = 10; //buffable
+    public float ultimateCooldown = 30; //buffable
+    public float ultimateFirerate = 0.1f; //buffable
+    public float ultimateSpeed = 10; //buffable
+    public float ultimateLifetime = 2; //buffable
+    public float ultimateDuration = 4; //buffable
+
     [Header("Movement")]
     public float moveSpeed = 5; //buffable
     public float dash = 5;  //cd in seconds & buffable

@@ -9,6 +9,8 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private Transform firePoint;
 
     private float fireTimer;
+    public bool canShoot = true;
+    private bool rotationLocked;
 
     private void Awake()
     {
@@ -17,7 +19,12 @@ public class PlayerShooting : MonoBehaviour
 
     private void Update()
     {
-        mouseRotation();
+         if (!rotationLocked)
+        {
+            mouseRotation();
+        }
+        if (!canShoot)
+        return;
 
         fireTimer += Time.deltaTime;
 
@@ -32,14 +39,14 @@ public class PlayerShooting : MonoBehaviour
     {
         for (int i = 0; i < stats.bulletsPerShot; i++)
         {
-            Shoot();
+            Shoot(bulletPrefab, firePoint, stats.attackDamage, stats.bulletSpeed, stats.bulletLifetime);
 
             if (i < stats.bulletsPerShot - 1)
                 yield return new WaitForSeconds(stats.shotDelay);
         }
     }
 
-    void Shoot()
+    public void Shoot(GameObject bulletPrefab, Transform firePoint, float damage, float bulletspeed, float lifetime)
     {
         Vector2 direction = firePoint.right;
         GameObject bullet = Instantiate(
@@ -52,13 +59,13 @@ public class PlayerShooting : MonoBehaviour
 
         bulletScript.Initialize(
             direction,
-            stats.attackDamage,
-            stats.bulletSpeed,
-            stats.bulletLifetime
+            damage,
+            bulletspeed,
+            lifetime
         );
     }
 
-    void mouseRotation()
+    public void mouseRotation()
     {
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = Mathf.Abs(Camera.main.transform.position.z - transform.position.z);
@@ -69,5 +76,9 @@ public class PlayerShooting : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
+    }
+    public void SetRotationLocked(bool locked)
+    {
+        rotationLocked = locked;
     }
 }

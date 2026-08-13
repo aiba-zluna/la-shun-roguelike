@@ -1,16 +1,33 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private CooldownUI cooldownUI;
+    private InputSystem_Actions input;
 
     private Rigidbody2D rb;
-    private Vector2 input;
+    private Vector2 movementInput;
     private PlayerStats stats;
-    
-    [SerializeField] private Animator animator;
+
+    public float dashForce;
+    public float dashDuration;
+    private bool canDash = true;
+    private bool isDashing;
+    private bool startDashingCooldown;
+
+    private Vector3 mousePos;
+    private Vector2 dashDirection;
+    [SerializeField] public Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    private bool directionLocked;
+
+    void Awake()
+    {
+        input = new InputSystem_Actions();
+    }
 
     void Start()
     {
@@ -18,28 +35,110 @@ public class PlayerMovement : MonoBehaviour
         stats = GetComponent<PlayerStats>();
     }
 
-    void Update()
+    void OnEnable()
     {
-        input = Vector2.zero;
+        input.Player.Enable();
+        input.Player.Move.performed += movement;
+        input.Player.Dash.performed += dash;
 
-        if (Keyboard.current.wKey.isPressed) input.y += 1;
-        if (Keyboard.current.sKey.isPressed) input.y -= 1;
-        if (Keyboard.current.aKey.isPressed) input.x -= 1;
-        if (Keyboard.current.dKey.isPressed) input.x += 1;
+        input.Player.Dash.canceled += dash;
+        input.Player.Move.canceled += movement;
+    }
 
-        animator.SetBool("isRunning", input != Vector2.zero);
+    void OnDisable()
+    {
+        input.Player.Disable();
+        input.Player.Move.performed -= movement;
+        input.Player.Move.canceled -= movement;
+        input.Player.Dash.performed -= dash;
+        input.Player.Dash.canceled -= dash;
+    }
 
-        if (input != Vector2.zero)
+    void movement(InputAction.CallbackContext context)
+    {
+        
+        movementInput = context.ReadValue<Vector2>();
+
+        if (context.performed)
         {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            spriteRenderer.flipX = mousePos.x < transform.position.x;
+            animator.SetBool("isRunning",true);
+        }
+        else
+        {
+            animator.SetBool("isRunning",false);
         }
     }
 
+    void dash(InputAction.CallbackContext context)
+    {
+        if (!canDash || isDashing) return;
+
+        if (context.performed)
+        {
+            StartCoroutine(DashCoroutine());
+        }
+    }
+    IEnumerator DashCoroutine()
+    {
+        canDash = false;
+        isDashing = true;
+
+        Vector2 dashDirection = movementInput.normalized;
+
+        if(dashDirection == Vector2.zero)
+        {
+            isDashing = false;
+            canDash = true;
+            yield break;
+        }
+        rb.linearVelocity = dashDirection * dashForce;
+        yield return new WaitForSeconds(dashDuration);
+        isDashing = false;
+        startDashingCooldown = true;
+        cooldownUI.StartCooldown(stats.dash);
+        yield return new WaitForSeconds(stats.dash);
+        canDash = true;
+        startDashingCooldown = false;
+    }
+
+    public bool DashCheck()
+    {
+        return isDashing;
+    }
+    
+
+    void MouseRotation()
+    {
+        if (directionLocked)
+        return;
+
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if(mousePos.x < transform.position.x && movementInput != Vector2.zero)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else
+        {
+            spriteRenderer.flipX = false;
+        }
+    }
+
+    void Update()
+    {
+        MouseRotation();
+    }
 
     void FixedUpdate()
     {
-        rb.linearVelocity = input.normalized * stats.moveSpeed;
+        if (!isDashing)
+        {
+            rb.linearVelocity = movementInput.normalized * stats.moveSpeed;
+        }
+    }
+
+    public void SetDirectionLocked(bool locked)
+    {
+        directionLocked = locked;
     }
 
 

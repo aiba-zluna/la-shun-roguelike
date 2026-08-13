@@ -327,6 +327,58 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &987261052687187027
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 548625880873504278}
+  - component: {fileID: 7867266852861966002}
+  m_Layer: 7
+  m_Name: Ultimate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &548625880873504278
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987261052687187027}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 554745155539271365}
+  - {fileID: 5116477678229504707}
+  m_Father: {fileID: 5781480940904764419}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7867266852861966002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987261052687187027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 818cb402ab0b64947aeecc3440b8b95f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  bulletPrefab: {fileID: 532359117390216048, guid: b720ecc3b05fa5e4e9d1d3fa3833a239, type: 3}
+  firePointLeft: {fileID: 554745155539271365}
+  firePointRight: {fileID: 5116477678229504707}
+  ultimateCooldown: 2
+  ultimateDuration: 3
+  ultimateFireRate: 0.2
 --- !u!1 &2655407166909140730
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,6 +410,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6127239158546105258}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2758786919922157452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 554745155539271365}
+  m_Layer: 7
+  m_Name: firepointLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &554745155539271365
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2758786919922157452}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.13, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 548625880873504278}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2764396811810215400
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,6 +452,7 @@ GameObject:
   - component: {fileID: 6127239158546105258}
   - component: {fileID: 8465240733265859463}
   - component: {fileID: 7603922765637969868}
+  - component: {fileID: 2510886948782099030}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -466,6 +550,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerShooting
   bulletPrefab: {fileID: 532359117390216048, guid: b720ecc3b05fa5e4e9d1d3fa3833a239, type: 3}
   firePoint: {fileID: 1574526205849820004}
+  canShoot: 1
+--- !u!114 &2510886948782099030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2764396811810215400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_NotificationBehavior: 3
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: 
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &3544242843079993894
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,6 +595,7 @@ GameObject:
   - component: {fileID: 5128046142928193891}
   - component: {fileID: 604421815332307214}
   - component: {fileID: 2374153428459954900}
+  - component: {fileID: 6268465410741703591}
   m_Layer: 7
   m_Name: main_character
   m_TagString: Player
@@ -501,6 +617,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6127239158546105258}
+  - {fileID: 548625880873504278}
   - {fileID: 8109785751787574423}
   - {fileID: 1605348053716492976}
   - {fileID: 1659738851333593269}
@@ -528,6 +645,23 @@ MonoBehaviour:
   shotDelay: 0.08
   moveSpeed: 5
   dash: 5
+  lifesteal: 0
+  dot: 0
+  pierce: 0
+  slow: 0
+  reroll: 0
+  ultimate: 0
+  chanceLaser: 0
+  chanceDiamond: 0
+  chanceMissiles: 0
+  damageMissiles: 10
+  damageLaser: 20
+  damageDiamond: 30
+  damageUltimate: 40
+  cooldownUltimate: 30
+  berserkStatus: 0
+  adrenalineStatus: 0
+  desperateStatus: 0
 --- !u!50 &1250205540229361844
 Rigidbody2D:
   serializedVersion: 5
@@ -613,6 +747,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e642d3d94e4c5ae488e34ae778bd0602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  dashForce: 20
+  dashDuration: 0.2
   animator: {fileID: 8212076044150723671}
   spriteRenderer: {fileID: 8890585760994781926}
 --- !u!114 &2374153428459954900
@@ -627,6 +763,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9dcb66a0f269a942a56f2a2abf065d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!114 &6268465410741703591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3544242843079993894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: 0}
+  m_NotificationBehavior: 3
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: 
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &7008366446084413097
 GameObject:
   m_ObjectHideFlags: 0
@@ -745,6 +911,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   fillImage: {fileID: 5651565431271123963}
+--- !u!1 &7754013188574009453
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5116477678229504707}
+  m_Layer: 7
+  m_Name: firepointRight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5116477678229504707
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7754013188574009453}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.18, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 548625880873504278}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8173744674130751340
 GameObject:
   m_ObjectHideFlags: 0

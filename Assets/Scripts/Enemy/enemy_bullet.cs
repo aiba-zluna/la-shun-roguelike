@@ -28,8 +28,13 @@ public class EnemyProjectile : MonoBehaviour
 
         if (player != null)
         {
-            player.TakeDamage(damage);
-            Destroy(gameObject);
+            bool damaged = player.TakeDamage(damage);
+
+            if (damaged)
+            {
+                Destroy(gameObject);
+            }
+
             return;
         }
 
