@@ -5595,7 +5595,7 @@ MonoBehaviour:
   selectionPanel: {fileID: 631171188}
   buffCardPrefab: {fileID: 1592298430462808520, guid: 7b7604765a9682d46ba45e8183a992d1, type: 3}
   cardContainer: {fileID: 59168414}
-  buffApplier: {fileID: 1732057934}
+  buffApplier: {fileID: 1732057940}
   basicBuffs:
   - {fileID: 11400000, guid: feb1e7e408b0cda418a52e3d8da3f539, type: 2}
   - {fileID: 11400000, guid: b8ffd51abe85ff54c8420893edbac10a, type: 2}
@@ -6004,24 +6004,8 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3544242843079993894, guid: 2bdcf0c9ddae6d241ac055243799d19b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1732057934}
+      addedObject: {fileID: 1732057940}
   m_SourcePrefab: {fileID: 100100000, guid: 2bdcf0c9ddae6d241ac055243799d19b, type: 3}
---- !u!114 &931398266 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8715223448542753591, guid: 2bdcf0c9ddae6d241ac055243799d19b, type: 3}
-  m_PrefabInstance: {fileID: 931398265}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 931398267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29fbcd944b227f24a9160f06e081005d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
---- !u!1 &931398267 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3544242843079993894, guid: 2bdcf0c9ddae6d241ac055243799d19b, type: 3}
-  m_PrefabInstance: {fileID: 931398265}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &941320816
 GameObject:
   m_ObjectHideFlags: 0
@@ -6290,6 +6274,11 @@ Transform:
   - {fileID: 903614720}
   m_Father: {fileID: 2022951155}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1209782304 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3544242843079993894, guid: 2bdcf0c9ddae6d241ac055243799d19b, type: 3}
+  m_PrefabInstance: {fileID: 931398265}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1212425869
 GameObject:
   m_ObjectHideFlags: 0
@@ -6463,19 +6452,30 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5781480940904764419, guid: 2bdcf0c9ddae6d241ac055243799d19b, type: 3}
   m_PrefabInstance: {fileID: 931398265}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1732057934
+--- !u!114 &1732057939 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8715223448542753591, guid: 2bdcf0c9ddae6d241ac055243799d19b, type: 3}
+  m_PrefabInstance: {fileID: 931398265}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209782304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29fbcd944b227f24a9160f06e081005d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!114 &1732057940
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 931398267}
+  m_GameObject: {fileID: 1209782304}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b48946e5b35b3c943a43ea68b7f9cd26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuffApplier
-  playerStats: {fileID: 931398266}
+  playerStats: {fileID: 1732057939}
 --- !u!1 &1764808232
 GameObject:
   m_ObjectHideFlags: 0
