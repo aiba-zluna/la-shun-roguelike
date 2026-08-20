@@ -13,12 +13,19 @@ MonoBehaviour:
   m_Name: Bullet Speed +
   m_EditorClassIdentifier: Assembly-CSharp::BuffData
   buffName: Bullet Speed +
-  description: Increase Bullet Speed by \n {value}
+  description: Increase Bullet Speed by \n {value1}
   icon: {fileID: 0}
   buffType: 0
-  statType: 3
-  valueType: 0
-  displayType: 0
-  minimumValue: 1
-  maximumValue: 3
+  statType1: 4
+  statType2: 0
+  bulletType: 0
+  valueType1: 0
+  displayType1: 0
+  minimumValue1: 1
+  maximumValue1: 5
+  valueType2: 0
+  displayType2: 0
+  minimumValue2: 0
+  maximumValue2: 0
+  conditionalBuff: {fileID: 0}
   oneTime: 0

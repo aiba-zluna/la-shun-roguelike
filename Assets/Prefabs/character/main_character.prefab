@@ -374,11 +374,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   bulletPrefab: {fileID: 532359117390216048, guid: b720ecc3b05fa5e4e9d1d3fa3833a239, type: 3}
+  cooldownUI: {fileID: 0}
   firePointLeft: {fileID: 554745155539271365}
   firePointRight: {fileID: 5116477678229504707}
-  ultimateCooldown: 2
-  ultimateDuration: 3
-  ultimateFireRate: 0.2
 --- !u!1 &2655407166909140730
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,6 +594,7 @@ GameObject:
   - component: {fileID: 604421815332307214}
   - component: {fileID: 2374153428459954900}
   - component: {fileID: 6268465410741703591}
+  - component: {fileID: 5818789429379181745}
   m_Layer: 7
   m_Name: main_character
   m_TagString: Player
@@ -643,6 +642,12 @@ MonoBehaviour:
   bulletLifetime: 2
   bulletsPerShot: 2
   shotDelay: 0.08
+  ultimateDamage: 10
+  ultimateCooldown: 30
+  ultimateFirerate: 0.1
+  ultimateSpeed: 10
+  ultimateLifetime: 2
+  ultimateDuration: 4
   moveSpeed: 5
   dash: 5
   lifesteal: 0
@@ -747,6 +752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e642d3d94e4c5ae488e34ae778bd0602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  cooldownUI: {fileID: 0}
   dashForce: 20
   dashDuration: 0.2
   animator: {fileID: 8212076044150723671}
@@ -793,6 +799,19 @@ MonoBehaviour:
   m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &5818789429379181745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3544242843079993894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b48946e5b35b3c943a43ea68b7f9cd26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuffApplier
+  playerStats: {fileID: 8715223448542753591}
 --- !u!1 &7008366446084413097
 GameObject:
   m_ObjectHideFlags: 0

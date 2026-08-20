@@ -30,52 +30,82 @@ public class BuffSelectionManager : MonoBehaviour
 
     private void CreateBuffCards()
     {
-        // Make a temporary copy so we can remove buffs
-        // from the pool and prevent duplicate cards.
+        if (basicBuffs == null || basicBuffs.Length == 0)
+        {
+            Debug.LogWarning("No basic buffs assigned!");
+            return;
+        }
+
+        // Create a temporary copy so the same buff
+        // cannot appear more than once.
         BuffData[] availableBuffs = (BuffData[])basicBuffs.Clone();
 
-        for (int i = 0; i < 3; i++)
+        int cardsToCreate = Mathf.Min(3, availableBuffs.Length);
+
+        for (int i = 0; i < cardsToCreate; i++)
         {
-            int randomIndex = Random.Range(0, availableBuffs.Length);
+            int randomIndex = Random.Range(
+                0,
+                availableBuffs.Length
+            );
 
             BuffData selectedBuff = availableBuffs[randomIndex];
 
-            // Roll the buff value ONCE.
-            float rolledValue;
+            // Roll Stat 1.
+            float rolledValue1 = RollValue(
+                selectedBuff.rollType1,
+                selectedBuff.minimumValue1,
+                selectedBuff.maximumValue1
+            );
 
-            if (selectedBuff.valueType == BuffValueType.Integer)
+            // Convert Increase/Decrease into
+            // a positive/negative value.
+            rolledValue1 = ApplyModifierType(
+                rolledValue1,
+                selectedBuff.modifierType1
+            );
+
+
+            // Roll Stat 2 only for MixedStatAdjust.
+            float rolledValue2 = 0f;
+
+            if (selectedBuff.buffType == BuffType.MixedStatAdjust &&
+                selectedBuff.statType2 != StatType.None)
             {
-                rolledValue = Random.Range(
-                    Mathf.RoundToInt(selectedBuff.minimumValue),
-                    Mathf.RoundToInt(selectedBuff.maximumValue) + 1
+                rolledValue2 = RollValue(
+                    selectedBuff.rollType2,
+                    selectedBuff.minimumValue2,
+                    selectedBuff.maximumValue2
+                );
+
+                rolledValue2 = ApplyModifierType(
+                    rolledValue2,
+                    selectedBuff.modifierType2
                 );
             }
-            else
-            {
-                rolledValue = Random.Range(
-                    selectedBuff.minimumValue,
-                    selectedBuff.maximumValue
-                );
-            }
+
 
             Debug.Log(
-                "Creating card: " +
-                selectedBuff.buffName +
-                " | Rolled value: +" +
-                rolledValue.ToString("0.##")
+                $"Creating card: {selectedBuff.buffName} | " +
+                $"Value 1: {FormatDebugValue(rolledValue1)} | " +
+                $"Value 2: {FormatDebugValue(rolledValue2)}"
             );
+
 
             BuffCard card = Instantiate(
                 buffCardPrefab,
                 cardContainer
             );
 
-            // Send both the buff and the rolled value
-            // to the card.
-            card.Setup(selectedBuff, rolledValue);
+            // Send the exact rolled values to the card.
+            card.Setup(
+                selectedBuff,
+                rolledValue1,
+                rolledValue2
+            );
 
-            // Remove the selected buff from the temporary pool
-            // so another card cannot use the same buff.
+
+            // Remove selected buff from temporary pool.
             availableBuffs[randomIndex] =
                 availableBuffs[availableBuffs.Length - 1];
 
@@ -86,30 +116,125 @@ public class BuffSelectionManager : MonoBehaviour
         }
     }
 
-    public void SelectBuff(BuffData selectedBuff, float rolledValue)
+
+    private float RollValue(
+        RollType rollType,
+        float minimumValue,
+        float maximumValue
+    )
     {
+        float rolledValue;
+
+        switch (rollType)
+        {
+            case RollType.WholeNumber:
+
+                rolledValue = Random.Range(
+                    Mathf.RoundToInt(minimumValue),
+                    Mathf.RoundToInt(maximumValue) + 1
+                );
+
+                break;
+
+
+            case RollType.Decimal:
+
+                rolledValue = Random.Range(
+                    minimumValue,
+                    maximumValue
+                );
+
+                // Limit decimal rolls to 2 decimal places.
+                rolledValue = Mathf.Round(
+                    rolledValue * 100f
+                ) / 100f;
+
+                break;
+
+
+            default:
+
+                rolledValue = minimumValue;
+
+                break;
+        }
+
+        return rolledValue;
+    }
+
+
+    private float ApplyModifierType(
+        float value,
+        BuffModifierType modifierType
+    )
+    {
+        switch (modifierType)
+        {
+            case BuffModifierType.Increase:
+
+                return Mathf.Abs(value);
+
+
+            case BuffModifierType.Decrease:
+
+                return -Mathf.Abs(value);
+
+
+            default:
+
+                return value;
+        }
+    }
+
+
+    private string FormatDebugValue(float value)
+    {
+        if (value >= 0f)
+        {
+            return "+" + value.ToString("0.##");
+        }
+
+        return value.ToString("0.##");
+    }
+
+
+    public void SelectBuff(
+        BuffData selectedBuff,
+        float rolledValue1,
+        float rolledValue2
+    )
+    {
+        if (selectedBuff == null)
+            return;
+
         Debug.Log(
-            "Buff selected: " +
-            selectedBuff.buffName +
-            " | Value: +" +
-            rolledValue.ToString("0.##")
+            $"Buff selected: {selectedBuff.buffName} | " +
+            $"Value 1: {FormatDebugValue(rolledValue1)} | " +
+            $"Value 2: {FormatDebugValue(rolledValue2)}"
         );
 
-        // Apply the exact same value that was shown on the card.
+
+        // Apply the EXACT values that were shown
+        // on the selected card.
         buffApplier.ApplyBuff(
             selectedBuff,
-            rolledValue
+            rolledValue1,
+            rolledValue2
         );
+
 
         // Remove the three cards.
         ClearCards();
 
-        // Close the selection screen.
+
+        // Close selection panel.
         selectionPanel.SetActive(false);
+
 
         // Resume the game.
         Time.timeScale = 1f;
     }
+
 
     private void ClearCards()
     {

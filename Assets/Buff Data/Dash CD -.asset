@@ -13,12 +13,19 @@ MonoBehaviour:
   m_Name: Dash CD -
   m_EditorClassIdentifier: Assembly-CSharp::BuffData
   buffName: Dash CD -
-  description: Decrease Dash Cooldown by \n {value}
+  description: Decrease Dash Cooldown by \n {value1}
   icon: {fileID: 0}
   buffType: 0
-  statType: 5
-  valueType: 1
-  displayType: 2
-  minimumValue: 0.5
-  maximumValue: 1
+  statType1: 6
+  statType2: 0
+  bulletType: 0
+  valueType1: 1
+  displayType1: 2
+  minimumValue1: 0.5
+  maximumValue1: 1
+  valueType2: 0
+  displayType2: 0
+  minimumValue2: 0
+  maximumValue2: 0
+  conditionalBuff: {fileID: 0}
   oneTime: 0

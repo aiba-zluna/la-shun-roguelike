@@ -13,12 +13,19 @@ MonoBehaviour:
   m_Name: AS +
   m_EditorClassIdentifier: Assembly-CSharp::BuffData
   buffName: AS +
-  description: 'Increases Attack Speed by \n {value} '
+  description: 'Increases Attack Speed by \n {value1} '
   icon: {fileID: 0}
   buffType: 0
-  statType: 2
-  valueType: 1
-  displayType: 1
-  minimumValue: 0.05
-  maximumValue: 0.15
+  statType1: 3
+  statType2: 0
+  bulletType: 0
+  valueType1: 1
+  displayType1: 1
+  minimumValue1: 0.05
+  maximumValue1: 0.15
+  valueType2: 0
+  displayType2: 0
+  minimumValue2: 0
+  maximumValue2: 0
+  conditionalBuff: {fileID: 0}
   oneTime: 0

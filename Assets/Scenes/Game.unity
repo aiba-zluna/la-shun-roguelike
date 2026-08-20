@@ -5926,6 +5926,10 @@ PrefabInstance:
       propertyPath: cooldownUI
       value: 
       objectReference: {fileID: 80966847}
+    - target: {fileID: 987261052687187027, guid: 2bdcf0c9ddae6d241ac055243799d19b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3544242843079993894, guid: 2bdcf0c9ddae6d241ac055243799d19b, type: 3}
       propertyPath: m_Name
       value: main_character
@@ -5980,7 +5984,7 @@ PrefabInstance:
       objectReference: {fileID: 8740431020022991017, guid: 33639cb83c8b75844b72ceb2d782c800, type: 3}
     - target: {fileID: 8715223448542753591, guid: 2bdcf0c9ddae6d241ac055243799d19b, type: 3}
       propertyPath: dash
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8715223448542753591, guid: 2bdcf0c9ddae6d241ac055243799d19b, type: 3}
       propertyPath: maxHealth
@@ -6001,27 +6005,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3544242843079993894, guid: 2bdcf0c9ddae6d241ac055243799d19b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1732057934}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bdcf0c9ddae6d241ac055243799d19b, type: 3}
---- !u!114 &931398266 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8715223448542753591, guid: 2bdcf0c9ddae6d241ac055243799d19b, type: 3}
-  m_PrefabInstance: {fileID: 931398265}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 931398267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29fbcd944b227f24a9160f06e081005d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
---- !u!1 &931398267 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3544242843079993894, guid: 2bdcf0c9ddae6d241ac055243799d19b, type: 3}
-  m_PrefabInstance: {fileID: 931398265}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &941320816
 GameObject:
   m_ObjectHideFlags: 0
@@ -6463,19 +6448,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5781480940904764419, guid: 2bdcf0c9ddae6d241ac055243799d19b, type: 3}
   m_PrefabInstance: {fileID: 931398265}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1732057934
+--- !u!114 &1732057934 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 5818789429379181745, guid: 2bdcf0c9ddae6d241ac055243799d19b, type: 3}
+  m_PrefabInstance: {fileID: 931398265}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 931398267}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b48946e5b35b3c943a43ea68b7f9cd26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuffApplier
-  playerStats: {fileID: 931398266}
 --- !u!1 &1764808232
 GameObject:
   m_ObjectHideFlags: 0

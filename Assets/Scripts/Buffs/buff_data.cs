@@ -2,11 +2,18 @@ using UnityEngine;
 
 public enum BuffType
 {
-    StatAdjust
+    FlatStatAdjust,
+    MixedStatAdjust,
+    BulletEffect,
+    SkillChance,
+    SkillDamage,
+    SpecialStatAdjust,
+    ConditionalStatAdjust
 }
 
 public enum StatType
 {
+    None,
     MaxHealth,
     AttackDamage,
     AttackSpeed,
@@ -15,17 +22,32 @@ public enum StatType
     Dash
 }
 
-public enum BuffValueType
+public enum BulletType
 {
-    Integer,
-    Float
+    None,
+    HolyBullet,
+    FreezingBullet,
+    PiercingBullet,
+    BouncingBullet,
+    VampiricBullet
 }
 
-public enum BuffDisplayType
+public enum RollType
 {
-    Number,
-    Percentage,
-    Seconds
+    WholeNumber,
+    Decimal
+}
+
+public enum BuffModifierType
+{
+    Increase,
+    Decrease
+}
+
+public enum BuffModifierMode
+{
+    Flat,
+    Percentage
 }
 
 [CreateAssetMenu(fileName = "New Buff", menuName = "Buffs/Buff")]
@@ -39,16 +61,44 @@ public class BuffData : ScriptableObject
 
     public Sprite icon;
 
+
     [Header("Buff")]
     public BuffType buffType;
-    public StatType statType;
 
-    [Header("Value")]
-    public BuffValueType valueType;
-    public BuffDisplayType displayType;
+    public StatType statType1;
 
-    public float minimumValue;
-    public float maximumValue;
+    public StatType statType2;
+
+    public BulletType bulletType;
+
+
+    [Header("Stat 1 Value")]
+    public BuffModifierType modifierType1;
+
+    public BuffModifierMode modifierMode1;
+
+    public RollType rollType1;
+
+    public float minimumValue1;
+
+    public float maximumValue1;
+
+
+    [Header("Stat 2 Value")]
+    public BuffModifierType modifierType2;
+
+    public BuffModifierMode modifierMode2;
+
+    public RollType rollType2;
+
+    public float minimumValue2;
+
+    public float maximumValue2;
+
+
+    [Header("Conditional Buff")]
+    public ConditionalBuffData conditionalBuff;
+
 
     [Header("Acquisition")]
     public bool oneTime;

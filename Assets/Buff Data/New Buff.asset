@@ -10,19 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c924884d3330b4748965c91745460d21, type: 3}
-  m_Name: AD +
+  m_Name: New Buff
   m_EditorClassIdentifier: Assembly-CSharp::BuffData
-  buffName: AD +
-  description: Increases Attack Damage by \n {value1}
+  buffName: Glass Cannon
+  description: Increases your attack
   icon: {fileID: 0}
-  buffType: 0
-  statType1: 2
+  buffType: 1
+  statType1: 0
   statType2: 0
   bulletType: 0
+  modifierType1: 0
   valueType1: 0
   displayType1: 0
-  minimumValue1: 3
-  maximumValue1: 7
+  minimumValue1: 0
+  maximumValue1: 0
+  modifierType2: 0
   valueType2: 0
   displayType2: 0
   minimumValue2: 0

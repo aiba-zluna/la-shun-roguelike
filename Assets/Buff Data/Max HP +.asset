@@ -13,10 +13,19 @@ MonoBehaviour:
   m_Name: Max HP +
   m_EditorClassIdentifier: Assembly-CSharp::BuffData
   buffName: Max HP +
-  description: Increases Max HP by \n  {value}
+  description: Increases Max HP by \n  {value1}
   icon: {fileID: 0}
   buffType: 0
-  statType: 0
-  minimumValue: 10
-  maximumValue: 30
+  statType1: 1
+  statType2: 0
+  bulletType: 0
+  valueType1: 0
+  displayType1: 0
+  minimumValue1: 10
+  maximumValue1: 30
+  valueType2: 0
+  displayType2: 0
+  minimumValue2: 0
+  maximumValue2: 0
+  conditionalBuff: {fileID: 0}
   oneTime: 0
